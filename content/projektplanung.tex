@@ -1,0 +1,211 @@
+Das Projekt wurde bereits in einer vorher bearbeiteten Projektarbeit geplant. Dabei wurden mehrere Analysen durchgeführt. Als Ergebnis der Anforderungsanalyse wurde folgende Liste von Anforderungen erstellt:
+
+\begin{table}[h!]
+	
+	\begin{tabularx}{\textwidth}{|p{\textwidth/100*20}|p{\textwidth/100*50}|X|}
+		
+		\hline
+		
+		Thema & Beschreibung & Kano Bewertung \\
+		
+		\hline
+		
+		\hline
+		
+		Dauerhafter Datenstrom & Producer sollen dauerhaft Temperaturdaten liefern & Basismerkmal \\
+		
+		\hline
+		
+		Daten Persistenz & Die Daten sollen dauerhaft in einer Datenbank persistiert werden & Basismerkmal \\
+		
+		\hline
+		
+		Start und Stopp des Datenstroms & Der Datenstrom soll vom Nutzer gestartet und gestoppt werden können & Basismerkmal \\
+		
+		\hline
+		
+		Datenstrom Skalierung & Der Datenstrom soll skaliert werden können. Beispielsweise sollen die Daten eines Tages in einer Stunde ausgegeben werden können & Basismerkmal \\
+		
+		\hline
+		
+		Dashboard & Nutzer soll die aktuellen Daten in einem Dashboard einsehen können & Basismerkmal \\
+		
+		\hline
+		
+		Mehrere AWS Services & Die Applikation soll auf mehreren AWS Services deployed werden, um diese vergleichen zu können & Basismerkmal \\
+		
+		
+		\hline
+				Dashboard Darstellung & Die Daten werden im Dashboard in verschiedenen Diagrammen wie bspw. Verlaufsdiagrammen dargestellt sowie in Tabellen. & Leistungsmerkmal \\
+				
+				\hline
+		
+	\end{tabularx}
+	
+	\caption{Anforderungen an das Projekt Teil 1}
+	\label{anforderungen_1}
+\end{table}
+
+\begin{table}[h!]
+	
+	\begin{tabularx}{\textwidth}{|p{\textwidth/100*20}|p{\textwidth/100*50}|X|}
+		
+		\hline
+		
+		Thema & Beschreibung & Kano Bewertung \\
+		
+		\hline
+		
+		\hline
+				
+		Verfügbarkeit & Die Services sollen hochverfügbar sein & Leistungsmerkmal \\
+		
+		\hline
+		
+		Aktualität der Daten & Die Daten sollen im Dashboard aktuell gehalten werden, auch wenn die Seite nicht neu geladen wird & Begeisterungs-merkmal \\
+		
+		\hline
+		
+		Temperaturen beeinflussen sich gegenseitig & Die Temperaturen sollen sich gegenseitig beeinflussen, z.B. bedingt eine höhere Außentemperatur eine höhere Innentemperatur & Leistungsmerkmal \\
+		
+		\hline
+		
+	\end{tabularx}
+	
+	\caption{Anforderungen an das Projekt Teil 2}
+	\label{anforderungen_2}
+\end{table}
+
+Die Anforderungsliste ist nach der Priorisierung sortiert, die im Rahmen einer Kano Bewertung der einzelnen Punkte erstellt wurde. Wie in den Tabellen \ref{anforderungen_1} und \ref{anforderungen_2} zu sehen, wurden die Basismerkmale am höchsten priorisiert, da diese den Erfolg des Projektes ausmachen. Auf der Basis dieser Anforderungsanalyse wurde zudem folgendes Pflichtenheft erstellt:
+
+\begin{table}[h!]
+
+\begin{tabularx}{\textwidth}{|p{\textwidth/100*30}|p{\textwidth/100*50}|X|}
+
+\hline
+
+Thema & Beschreibung & Aufwand \\
+
+\hline
+
+\hline
+
+AWS kennenlernen & Kennenlernen der AWS Services und erste Deployments von Containern & 10 \\
+
+\hline
+
+Docker Image & Docker Image mit allen benötigten Ressourcen erstellen & 3 \\
+
+\hline
+
+Docker Container & Docker Container aus dem Image mit der fertigen Applikation erzeugen & 3 \\
+
+\hline
+
+Producer & Es müssen mehrere Producer geschrieben werden, die konstant Temperaturdaten liefern. Die Producer werden in Java geschrieben & 20 \\
+
+\hline
+
+Consumer & Es muss mindestens ein Consumer geschrieben werden, der die Daten der Producer verarbeitet. Der Consumer wird in Java geschrieben & 20 \\
+
+\hline
+
+\end{tabularx}
+
+\caption{Pflichtenheft Teil 1}
+
+\end{table}
+
+\begin{table}[h!]
+
+\begin{tabularx}{\textwidth}{|p{\textwidth/100*30}|p{\textwidth/100*50}|X|}
+	
+	\hline
+	
+	Thema & Beschreibung & Aufwand \\
+	
+	\hline
+	
+	\hline
+	
+	Consumer DB & Es muss eine Datenbank entweder auf Amazon RDS oder Amazon DynamoDB (oder andere Lösungen bspw. mit Cassandra) eingerichtet werden & 10 \\
+	
+	\hline
+	
+	Consumer DB Zugriff & Der Consumer muss die Temperaturdaten in die DB schreiben können & 10 \\
+	
+	\hline
+	
+	Mehrere AWS Services & Die Applikation für mehrere AWS Services kompatibel machen und auf mehreren Services deployen & 20 \\
+	
+	\hline
+	
+	Dashboard & Es muss ein Dashboard geschrieben werden, das die Temperaturdaten anzeigen kann & 15 \\
+	
+	\hline
+	
+	Dashboard Start Stopp & Es muss im Dashboard die Funktion geben den Datenstrom anhalten oder wieder starten zu können & 3 \\
+	
+	Dashboard Zeitskalierung & Es muss im Dashboard die Funktion geben den Datenstrom verschnellern oder verlangsamen zu können & 7 \\
+	
+	\hline
+	
+	Dashboard Diagramme & Die Daten sollten im Dashboard in Form von Diagrammen dargestellt werden & 10 \\
+	
+	\hline
+	
+	Dashboard Diagramme Aktualität & Die Daten sollten im Dashboard immer aktuell gehalten werden, auch wenn der Nutzer die Seite nicht aktualisiert & 5 \\
+	
+	\hline
+	
+	Producer Temperatur Beeinflussung & Die Temperaturwerte der Producer müssen sich gegenseitig beeinflussen. Die Producer müssen also untereinander kommunizieren und zumindest Wechsel in der Temperaturtendenz interessierten anderen Producern mitteilen. & 10 \\
+	
+	\hline
+	
+\end{tabularx}
+
+\caption{Pflichtenheft Teil 2}
+
+\end{table}
+
+Das Pflichtenheft ist genau wie die Anforderungsliste nach der Priorisierung sortiert, die im Rahmen einer Kano Bewertung der einzelnen Punkte erstellt wurde. Genauere Erläuterungen der einzelnen Anforderungen und Punkte des Pflichtenhefts finden sich in der Projektarbeit. \newline
+Des weiteren wurde im Rahmen der Projektplanung eine Risikoanalyse durchgeführt, um die größten Risiken des Projekts zu erkennen und dementsprechende Gegenmaßnahmen anwenden zu können. Hierbei haben sich folgende 4 Risiken herausgestellt:
+
+\begin{table}[h!]
+	
+	\begin{tabularx}{\textwidth}{|p{\textwidth/100*10}|p{\textwidth/100*40}|p{\textwidth/100*15}|p{\textwidth/100*12}|X|}
+		
+		\hline
+		
+		Nummer & Risiko & Eintrittswahr-scheinlichkeit in \% & geschätzer Schaden in \texteuro & Risiko-faktor  \\
+		
+		\hline
+		
+		\hline
+		
+		1 & AWS Zugriff zu spät bekommen & 30 & 300 & 90 \\
+		
+		\hline
+		
+		2 & Producer erzeugt zu viele Daten und damit zu viele Kosten bei AWS & 150 & 20 & 75 \\
+		
+		\hline
+		
+		3 & Teile des Projekts werden nicht rechtzeitig vor Abgabe erstellt & 10 & 1000 & 100 \\
+		
+		\hline
+		
+		4 & Unterschätzen des Umfangs oder der Schwierigkeit des Projektes & 10 & 1000 & 100 \\
+		
+		\hline
+		
+	\end{tabularx}
+	
+	\caption{Risikoliste}
+	
+\end{table}
+
+Der Risikofaktor entspricht der Formel \(\frac{Eintrittswahrscheinlichkeit \cdot Schaden}{100}\).Dementsprechend befinden sich gerade die Risiken Nummer 3 und 4 durchaus in einem gefährlichen Bereich, der das Projekt gefährden könnte. In der Projektarbeit wurden allerdings Maßnahmen zur Verhinderung des Eintretens der Risiken ermittelt, die in der Ausführung des Projektes auch umgesetzt wurden.  \newline
+Zu guter Letzt wurde eine Kostenplanung erstellt, da die Nutzung von Amazon Web Services Kosten verursachen kann und diese nicht zu hoch ausfallen sollten. Es wurde ein Budget von bis zu 200  \texteuro gewährt, das nicht überschritten werden sollte. Daher mussten die aktuellen Kosten ständig überwacht werden. \newline
+Im Rahmen der Projektarbeit wurden zudem die Themen und Komponenten, die Teil der Bachelorarbeit sein sollten, behandelt und beschrieben. Darunter zählten die Themen Cloud Computing, Amazon Web Services und deren einzelne Komponenten sowie Docker. Daher müssen diese Themen in dieser Bachelorarbeit nicht mehr ausführlich behandelt werden. \newline
+Eine erste Evaluation der in Frage kommenden Amazon Web Services wurde ebenfalls durchgeführt und dabei eine Kombination aus Amazon EC2 als Infrastruktur für die Producer und Consumer, Amazon Kinesis als Übertragungskanal für die Temperaturdaten sowie Amazon RDS oder Amazon DynamoDB für die Persistierung der Daten als passende Services ausgemacht.

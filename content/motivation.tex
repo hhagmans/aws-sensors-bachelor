@@ -1,0 +1,15 @@
+\section{Motivation}
+
+Cloud Computing ist ein immer größer werdendes Thema in der IT. Immer mehr Daten werden nicht mehr lokal, sondern in der Cloud gespeichert und werden somit für jeden überall verfügbar. Auch Anwendungen werden immer häufiger nicht mehr lokal betrieben, sondern nutzen die großen Rechnerleistungen von Cloud Lösungen, um möglichst skalierbar zu sein und mittels Redundanz höhere Verfügbarkeiten und bessere Latenzzeiten zu erreichen. Zudem bieten Cloud Lösungen die Möglichkeit, Investitionskosten in Betriebskosten umzuwandeln, da keine neuen Server und andere Geräte gekauft werden müssen, sondern für die Nutzung bezahlt wird. Webapplikationen bilden hier keine Ausnahme. Anstatt eigene Rechenzentren aufbauen zu müssen, werden Webapplikationen immer häufiger bei externen Cloudanbietern betrieben um Kosten und den Administrationsaufwand solcher Systeme zu reduzieren. Ein großer Anbieter solcher Plattformen ist Amazon, die mit ihren Amazon Web Services \cite{aws} eine Reihe von Cloud Services bieten, die von vielen weltweit operierenden Unternehmen genutzt wird. Doch wie kann man mittels Amazon Web Services große Datenflüsse wie beispielsweise die Aufzeichnung von Sensordaten in einem automatisierten Heimsystem am besten verwalten?
+
+\section{Zielsetzung}
+Es soll eine Wettersimulation erstellt werden, die aus mehreren Services besteht, die dauerhaft Daten liefern. Beispielsweise mehrere virtuelle Temperatursensoren, die Zufallszahlen innerhalb eines bestimmten Werteintervalls liefern. Die Temperaturwerte können sich auch gegenseitig beeinflussen. So beeinflusst eine höhere Außentemperatur auch die Innentemperatur. Diese Komponenten werden jeweils in einem Docker Container \cite{docker} auf Amazon ECS \cite{ecs} deployed und liefern einen konstanten Datenstrom von Temperaturdaten. Der Datenstrom soll skaliert werden können und bspw. die Daten eines ganzen Tages in einer Stunde erzeugen. Die Daten werden in einer SQL Datenbank auf Amazon RDS \cite{rds} oder Amazon DynamoDB \cite{dynamodb} gespeichert. Eine eigene Lösung mit Apache Cassandra \cite{cassandra} wäre auch möglich. Im Dashboard soll eine Übersicht der Daten in Verlaufsdiagrammen verfügbar sein. Hier ist auch eine Anpassung der Zeitskalierung möglich.
+Der Fokus liegt hierbei nicht auf einer akkuraten Wettersimulation, sondern auf der Evaluation der AWS Services für große Datenströme und der Vergleich zwischen den einzelnen AWS Services. Bspw. könnten Teile der Architektur auch mit Amazon Kinesis \cite{kinesis} umgesetzt werden, das speziell für große Datenströme konzipiert wurde. Hier könnte man beide Architekturentwürfe vergleichen.
+Dieses Projekt wurde in einer Projektarbeit bereits geplant und analysiert und soll in dieser Bachelorarbeit nun implementiert werden. Daraufhin soll eine Evaluation der verwendeten AWS Komponenten durchgeführt werden.
+
+\section{Vorgehensweise}
+\begin{itemize}
+	\item Wie wird vorgegangen, um das Ziel zu erreichen?
+	\item Warum ist die Arbeit so gegliedert, wie sie gegliedert ist?
+	\item Welche Aspekte werden nicht behandelt \textbf{und} warum?
+\end{itemize}
