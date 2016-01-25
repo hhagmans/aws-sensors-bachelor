@@ -3,7 +3,7 @@ Um die Abhängigkeitsverwaltung und das Bauen des Projektes möglichst simpel zu g
 Abhängigkeiten des Projekts sind der Amazon Kinesis Client in der Version 1.6.1, der Amazon Kinesis Producer in der Version 0.10.2 sowie Eclipse Jetty Servlet \cite{jetty} in der Version 9.2.14.v20151106. \newline
 Die Projektarchitektur ist im Grunde genommen genau so, wie sie von Amazon in der Dokumentation von AWS Kinesis vorgestellt wird.
 
-\begin{figure}[!h]
+\begin{figure}[h!]
 
 \includegraphics[width=1.0\textwidth]{content/images/kinesis_architecture.png}
 
@@ -13,7 +13,7 @@ Die Projektarchitektur ist im Grunde genommen genau so, wie sie von Amazon in de
 
 \end{figure}
 
-Wie in Abbildung. \ref{fig:aws_architecture} zu sehen, setzt Amazon in der Architektur 4 Schichten voraus. Die Producer, den Kinesis Stream, die Consumer sowie weitere Services außerhalb von Kinesis. Die Daten werden von links nach rechts in der Architektur übertragen. Zunächst einmal werden die Daten in den Producern erzeugt und in den Kinesis Stream geschrieben, in denen sie in einem oder mehreren Shards einige Tage gespeichert bleiben. Ein Shard ist eine Gruppe von Datensätzen in einem Kinesis Stream, die eine feste Menge an Daten aufnehmen können. \newline
+Wie in Abbildung \ref{fig:aws_architecture} zu sehen, setzt Amazon in der Architektur 4 Schichten voraus. Die Producer, den Kinesis Stream, die Consumer sowie weitere Services außerhalb von Kinesis. Die Daten werden von links nach rechts in der Architektur übertragen. Zunächst einmal werden die Daten in den Producern erzeugt und in den Kinesis Stream geschrieben, in denen sie in einem oder mehreren Shards einige Tage gespeichert bleiben. Ein Shard ist eine Gruppe von Datensätzen in einem Kinesis Stream, die eine feste Menge an Daten aufnehmen können. \newline
 Auf der anderen Seite des Kinesis Streams befinden sich ein oder mehrere Consumer, die die Daten aus den Shards des Kinesis Streams lesen. Nach dem Lesen können die Daten zudem an andere Services weitergeleitet werden, wie beispielsweise Amazon DynamoDB, mit dem die Daten in der NoSQL-Datenbank von DynamoDB persistiert werden können. \newline
 Genau diese Architektur wurde auch im Projekt umgesetzt. Es gibt eine oder mehrere Instanzen des Producers, der Temperaturdaten erzeugt. Der Producer schreibt die Daten in einen Kinesis Stream, meist nur mit einem Shard, da ein Shard für die Datenmengen dieses Projekts ausreicht. Zudem gibt es eine oder mehrere Instanzen eines Consumers, der die Daten aus dem Kinesis Stream liest und dann in eine DynamoDB Datenbank schreibt. Darüber hinaus enthält dieses Projekt zudem eine Webapplikation, die die Temperaturdaten aus DynamoDB liest und in Diagrammen ausgibt. \newline
 Zudem enthält das Projekt Utility-Klassen für DynamoDB, Kinesis sowie zur Temperaturgenerierung, in denen Methoden für die entsprechenden Anforderungsgebiete ausgelagert wurden. Darüber hinaus enthält das Projekt eine "DeleteResources" Klasse, die eine Methode zur Löschung aller verwendeten Ressourcen auf Amazon Webservices bereitstellt. \newline
