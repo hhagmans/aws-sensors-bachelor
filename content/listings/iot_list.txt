@@ -1,0 +1,7 @@
+aws iot list-thing-principals --thing-name "MyDevice3"
+{
+    "principals": [
+        "arn:aws:iot:us-east-1:101010101010:cert/e7dc0fe48c148734641f2ba54312ba54641f2ba543fac37f2ba54348c1487ca7",
+        "arn:aws:iot:us-east-1:101010101010:cert/302ba54348c1487fe691284c5eaa6bbadc02ba54348c1487fe641fac37fbcda5" 
+    ]
+}

@@ -1,0 +1,3 @@
+HTTP GET https://endpoint/things/thingName/shadow
+HTTP 200
+BODY: response state document

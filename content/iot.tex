@@ -31,4 +31,34 @@ Die Regeln werden direkt in der Management Konsole eingetragen oder über eine SQ
 AWS IoT bietet also passende Funktionen, um das Projekt mit echten Temperatursensoren umzusetzen. Man könnte die Temperaturdaten direkt an einen Datenbank Service wie Amazon DynamoDB weiterleiten und auch die Temperatursensoren über die REST API direkt steuern. Mittels der Rules Engine könnten Regeln festgelegt werden, nach denen bei bestimmten Temperaturen bestimmte Aktionen ausgeführt werden können. Dadurch könnte man auch andere Geräte wie beispielsweise Ventilatoren oder Klimaanlagen einbinden und mittels AWS IoT steuern lassen. Man benötigt aber neben den Sensoren auch Mikrocontroller wie bspw. Raspberry PIs \cite{raspberry}, die mit den Sensoren und anderen Geräten kommunizieren können, um AWS IoT nutzen zu können.  \newline \newline
 
 
-\section{AWS IoT SDK}
+\section{AWS IoT CLI, SDK und APIs}
+Die AWS IoT CLI bietet die Möglichkeit über Kommandozeileneingaben verschiedene Funktionen von AWS IoT zu nutzen.. Beispielsweise können Geräte zur Device Registry hinzugefügt werden und Einträge in der Registry verändert werden. 
+
+\lstinputlisting[firstline=1, lastline=1, caption=Einfügen eines Geräts in die Registry. Quelle: \cite{iot_registry} , label=iot_describe_1, style=java]{content/listings/iot_describe.txt}
+
+Der Quellcode \ref{iot_describe_1} zeigt den Befehl, mit dem ein Gerät mit dem Namen ``MyDevice3'' in die Registry eingefügt werden kann.
+
+\lstinputlisting[firstline=2, lastline=10, caption=Geräteeintrag in der Registry. Quelle: \cite{iot_registry} , label=iot_describe_2, style=java]{content/listings/iot_describe.txt}
+
+Der Eintrag in der Registry sieht dann wie in Quelltext \ref{iot_describe_2} aus. Weitere Attribute wie eine einzigartige Seriennummer werden automatisch generiert. \newline
+Die AWS IoT CLI bietet zudem auch die Möglichkeit alle Geräte in der Registry anzuzeigen oder die Suchergebnisse zu filtern. \newline
+Mittels SDK lassen sich auch Regeln erstellen, einsehen und bearbeiten.
+
+\lstinputlisting[firstline=1, lastline=1, caption=Erstellen einer AWS IoT Regel. Quelle: \cite{iot_rules} , label=iot_rule_1, style=java]{content/listings/iot_create_rule.txt}
+
+In Quelltext \ref{iot_rule_1} wird eine Regel mit dem Namen ``my-rule'' erzeugt. Zudem wird eine payload Datei namens ``my-rule.json'' ebenfalls mitgeschickt.
+
+\lstinputlisting[firstline=2, lastline=15, caption=Inhalt einer Payload Datei. Quelle: \cite{iot_rules} , label=iot_rule_2, style=java]{content/listings/iot_create_rule.txt}
+
+Die Payload Datei in Quelltext \ref{iot_rule_2} enthält die Regel, alle Nachrichten, die an die Topic ``iot-topic'' gesendet werden, in die DynamoDB Tabelle ``my-dynamodb-table'' zu schreiben. Dabei wird noch eine Rolle übergeben, die in diesem Fall das Recht hat, auf die DynamoDB Tabelle zuzugreifen und in diese zu schreiben. Als HashkeyValue wird der Name der Topic übergeben und als rangeKeyValue der Timestamp der Nachricht.
+
+\lstinputlisting[firstline=1, lastline=1, caption=GET Anfrage an einen ``Geräteschatten''. Quelle: \cite{iot_get_thingshadow} , label=iot_get_shadow_1, style=java]{content/listings/iot_get_thingshadow.txt}
+
+Mittels einer REST API können die ``Geräteschatten'' von Geräten abgefragt und auch manipuliert werden. Quelltext  \ref{iot_get_shadow_1} zeigt eine HTTP GET Anfrage an einen Geräteschatten, wobei ``endpoint'' und ``thingName'' Variablen sind, die man in der AWS IoT Konsole auslesen kann oder auch per AWS IoT SDK.
+
+\lstinputlisting[firstline=2, lastline=3, caption=GET Antwort auf die Anfrage an einen ``Geräteschatten''. Quelle: \cite{iot_get_thingshadow} , label=iot_get_shadow_2, style=java]{content/listings/iot_get_thingshadow.txt}
+
+Quelltext  \ref{iot_get_shadow_2} zeigt die Antwort auf eine Anfrage an einen ``Geräteschatten''. ``response state document'' ist hierbei ein größeres Dokument, das Informationen über den Status des ``Geräteschattens'' sowie Metadaten, einen Timestamp und andere Informationen enthält. \newline
+Über die API ist es auch möglich, ``Geräteschatten'' zu bearbeiten und zum Beispiel einen neuen Status zu setzen, der dann im Gerät gesetzt wird, wenn es online ist oder auch ``Geräteschatten'' zu löschen. \newline
+Es gibt außerdem noch eine AWS IoT SDK \cite{iot_sdk}, die die Integration von Geräten in AWS IoT vereinfacht. Die SDK ist für C, Arduino Yún \cite{arduino_yun} und Node.js \cite{nodejs} verfügbar. \newline
+Sie bietet Funktionen zum Anmelden der Geräte bei AWS IoT, dem Aufbauen von Verbindungen und Senden von Nachrichten über die Verbindung sowie zum Bearbeiten von ``Geräteschatten''.

@@ -1,0 +1,10 @@
+aws iot describe-thing --thing-name "MyDevice3"
+{
+    "thingName": " MyDevice3",
+    "defaultClientId": "MyDevice3",
+    "attributes": {
+        "Manufacturer": "Amazon",
+        "Type": "IoT Device A", 
+        "Serial Number": "10293847562912" 
+     } 
+}
