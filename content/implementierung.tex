@@ -28,7 +28,7 @@ In der pom.xml des Projekts sind mehrere Profile eingetragen, die es ermöglichen
 
 \section{Löschung der AWS Ressourcen}
 
-Eine weitere Klasse ist die Klasse "DeleteResources", mittels der man die gestarteten Ressourcen auf Amazon Webservices wieder löschen kann, um keine weiteren Kosten zu verursachen. \newline
+Eine weitere Klasse ist die Klasse ``DeleteResources'', mittels der man die gestarteten Ressourcen auf Amazon Webservices wieder löschen kann, um keine weiteren Kosten zu verursachen. \newline
 Die Klasse hat eine main Methode, die zwei Argumente annimmt: Den Streamnamen sowie den Datenbank Namen der Dynamo DB Tabelle.
 \lstinputlisting[firstline=24, lastline=30, caption=DeleteResources.java (24-30): Auslesen der übergebenen Argumente, label=deleteresources_init_variables, style=java]{content/listings/DeleteResources.java}
 In Quelltext \ref{deleteresources_init_variables} sieht man, wie die Argumente ausgelesen und gesetzt werden. Wenn nicht genau 2 Argumente übergeben werden, wird ein Standardwert für die beiden Variablen genutzt. 
@@ -39,4 +39,11 @@ Im nächsten Abschnitt in Quelltext \ref{deleteresources_init_stream} wird dann d
 Damit sind alle Ressourcen, die auf Amazon Web Services genutzt wurden, gelöscht und es werden keine Kosten mehr zum Beispiel durch die temporäre Speicherung der Daten im Kinesis Stream verursacht.
 \section{Docker}
 
+Um die Applikation auf ein Deployment auf Amazon EC2 vorzubereiten, wurde ein Docker Image erstellt, um die Applikation letztendlich über ECS auf EC2 zu deployen. \newline
+\lstinputlisting[firstline=1, lastline=2, caption=Dockerfile des Projekts, label=dockerfile, style=java]{content/listings/Dockerfile.txt}
+Dieses Dockerfile ist sehr simpel gehalten und enthält nur 2 Zeilen. Wie in Quelltext \ref{dockerfile} zu sehen, basiert dieses Image auf dem Apache Maven Image \cite{maven_image}. Dieses Image enthält neben einer Java 7 Installation auch eine Maven 3.2 Installation. Zudem kopiert es bei der Generierung des Images das Projekt, wenn die Dockerfile im gleichen Ordner wie die pom.xml ist, nach ``/usr/src/app'' und führt ``mvn install'' aus. Zusätzlich dazu wird, wie in Zeile 2 beschrieben, noch ``mvn clean package'' ausgeführt, was die Applikation endgültig initialisiert. \newline
+Mithilfe dieses Dockerfiles kann nun mit ``docker build -t project-image .'' ein Docker Image erzeugt werden. Über dieses Image kann dann mit dem Befehl in Quelltext \ref{start_docker} der Producer gestartet werden.
+\lstinputlisting[firstline=1, lastline=1, caption=Konsolenbefehl zum Starten des Docker Images, label=start_docker, style=java]{content/listings/Start_Docker.txt}
+Auch hier müssen wieder der AWS Access Key sowie der AWS Secret Key übergeben werden sowie die weiteren Parameter, die der Producer annimmt. In diesem Beispiel wird ein Stream namens ``StreamTest'' erzeugt, der Sensor Name ist ``SensorTest'' und der Producer erzeugt für 10 Sekunden 10 Records pro Sekunde. \newline
+Es ist natürlich auch möglich die anderen Klassen mithilfe dieses Images zu starten, indem die Übergabeparameter geändert werden.
 \section{Abweichungen im Vergleich zur Projektplanung}

@@ -1,0 +1,1 @@
+docker run -it --name project-image project-container bash -c 'MAVEN_OPTS="-Daws.accessKeyId=ACCESSKEY Daws.secretKey=SECRETKEY -Dstream.name=StreamTest -Dsensor.name=SensorTest -Drun.seconds=10 -Drecord.second=1'' mvn compile -Pproducer exec:java'
