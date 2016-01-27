@@ -1,4 +1,8 @@
-\section{Einführung}
+IoT ist ein Thema, das immer bedeutender wird in der heutigen Zeit, gerade durch das immer mehr aufkommende Thema Smart Home. Dieses Kapitel wird eine kurze Einführung in das Thema IoT geben und dann die Möglichkeiten von AWS IoT beschreiben.
+
+\section{Einführung IoT}
+
+\section{Einführung AWS IoT}
 AWS IoT \cite{iot} ist einer der neueren Web Services von Amazon, welcher zunächst im Oktober 2015 in eine Beta Phase gestartet ist und seit Januar 2016 in den regulären Betrieb gewechselt ist. Es ist eine verwaltete Cloud Plattform, mit der verbundene Geräte mit Cloud Anwendungen und anderen Geräten zusammenarbeiten können. \newline
 AWS IoT kann Millionen von Nachrichten von typischen IoT Geräten wie bspw. Sensoren annehmen und an weitere Amazon Web Services oder andere IoT Geräte verteilen. Dies bietet zum einen die Möglichkeit der Kommunikation von IoT Geräten untereinander sowie die Möglichkeit der IoT Geräte mit der Cloud zu kommunizieren um beispielsweise Daten zu übermitteln, die dann in Cloud Services verarbeitet und/oder persistiert werden. Beispiele wären zum Beispiel ein Temperatursensor, der mittels AWS IoT der Klimaanlage des Hauses die Nachricht übermittelt, dass die Temperatur höher geregelt werden muss oder der Temperatursensor schickt seine Temperaturdaten an andere Amazon Web Services wie bspw. Amazon DynamoDB, welches die Daten dann persistieren kann. Amazon nennt als Beispiel eine Reihe von Temperatursensoren, die ihre Daten an AWS IoT senden. AWS IoT sendet dann bei Überschreiten eines bestimmten Grenzwertes ein Kommando an einen Ventilator im Haus, der sich daraufhin einschaltet. Der Ventilator kann aber auch bspw. über eine Mobilapplikation von einem Benutzer über AWS IoT manuell gestartet werden (s. Abbildung \ref{fig:iot_authentication}).
 \begin{figure}[h!]
@@ -62,3 +66,5 @@ Quelltext  \ref{iot_get_shadow_2} zeigt die Antwort auf eine Anfrage an einen ``
 Über die API ist es auch möglich, ``Geräteschatten'' zu bearbeiten und zum Beispiel einen neuen Status zu setzen, der dann im Gerät gesetzt wird, wenn es online ist oder auch ``Geräteschatten'' zu löschen. \newline
 Es gibt außerdem noch eine AWS IoT SDK \cite{iot_sdk}, die die Integration von Geräten in AWS IoT vereinfacht. Die SDK ist für C, Arduino Yún \cite{arduino_yun} und Node.js \cite{nodejs} verfügbar. \newline
 Sie bietet Funktionen zum Anmelden der Geräte bei AWS IoT, dem Aufbauen von Verbindungen und Senden von Nachrichten über die Verbindung sowie zum Bearbeiten von ``Geräteschatten''.
+
+\section{Zusammenfassung}

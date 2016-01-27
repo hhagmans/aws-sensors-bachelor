@@ -1,6 +1,8 @@
+In diesem Abschnitt wird aus die Implementierung des Projekts eingegangen. Dabei wird zunächst die Projektarchitektur erklärt und dann werden die einzelnen Komponenten des Projekts, Producer, Consumer  und die Webapplikation beschrieben. Zudem wird darauf eingegangen, wie die genutzten AWS Ressourcen gelöscht werden können und wie das Projekt in einem Docker Container verwendet werden kann. Zuletzt werden Abweichungen im Verglich zur Projektplanung besprochen.
 \section{Projektarchitektur}
 Um die Abhängigkeitsverwaltung und das Bauen des Projektes möglichst simpel zu gestalten, wurde für das Projekt Apache Maven \cite{maven} genutzt und das Projekt dementsprechend als Maven Projekt erstellt. \newline
 Abhängigkeiten des Projekts sind der Amazon Kinesis Client in der Version 1.6.1, der Amazon Kinesis Producer in der Version 0.10.2 sowie Eclipse Jetty Servlet \cite{jetty} in der Version 9.2.14.v20151106. \newline
+Teile des Codes basieren auf den Beispielen, die Amazon im AWS Kinesis Developer Guide behandelt (s. \cite{kinesis_sample_1} und \cite{kinesis_sample_2})
 Die Projektarchitektur ist im Grunde genommen genau so, wie sie von Amazon in der Dokumentation von AWS Kinesis vorgestellt wird.
 
 \begin{figure}[h!]
@@ -17,7 +19,7 @@ Wie in Abbildung \ref{fig:aws_architecture} zu sehen, setzt Amazon in der Archit
 Auf der anderen Seite des Kinesis Streams befinden sich ein oder mehrere Consumer, die die Daten aus den Shards des Kinesis Streams lesen. Nach dem Lesen können die Daten zudem an andere Services weitergeleitet werden, wie beispielsweise Amazon DynamoDB, mit dem die Daten in der NoSQL-Datenbank von DynamoDB persistiert werden können. \newline
 Genau diese Architektur wurde auch im Projekt umgesetzt. Es gibt eine oder mehrere Instanzen des Producers, der Temperaturdaten erzeugt. Der Producer schreibt die Daten in einen Kinesis Stream, meist nur mit einem Shard, da ein Shard für die Datenmengen dieses Projekts ausreicht. Zudem gibt es eine oder mehrere Instanzen eines Consumers, der die Daten aus dem Kinesis Stream liest und dann in eine DynamoDB Datenbank schreibt. Darüber hinaus enthält dieses Projekt zudem eine Webapplikation, die die Temperaturdaten aus DynamoDB liest und in Diagrammen ausgibt. \newline
 Zudem enthält das Projekt Utility-Klassen für DynamoDB, Kinesis sowie zur Temperaturgenerierung, in denen Methoden für die entsprechenden Anforderungsgebiete ausgelagert wurden. Darüber hinaus enthält das Projekt eine "DeleteResources" Klasse, die eine Methode zur Löschung aller verwendeten Ressourcen auf Amazon Webservices bereitstellt. \newline
-In der pom.xml des Projekts sind mehrere Profile eingetragen, die es ermöglichen, einzelne Klassen mit Startparametern auszuführen um somit beispielsweise den Producer mit anderen Parametern zu starten (siehe Kapitel \ref{producer}).
+In der pom.xml des Projekts sind mehrere Profile eingetragen, die es ermöglichen, einzelne Klassen mit Startparametern auszuführen um somit beispielsweise den Producer mit anderen Parametern zu starten (siehe Kapitel \ref{producer}). 
 
 \section{Producer}
 \label{producer}
@@ -26,15 +28,25 @@ In der pom.xml des Projekts sind mehrere Profile eingetragen, die es ermöglichen
 
 \section{Webapplikation}
 
+Die Webapplikation besteht aus einem Servlet sowie der Klasse Servletstarter, die einen Jetty Server startet und das Servlet einbindet.
+
+\lstinputlisting[firstline=34, lastline=39, caption=ServletStarter.java (ll. 34-39): Auslesen der übergebenen Argumente in ServletStarter, label=servletStarter_init_variables, style=java]{content/listings/ServletStarter.java}
+In Quelltext \ref{servletStarter_init_variables} werden die übergebenen Parameter ausgelesen und initialisiert. Zudem wird eine Server Instanz erzeugt, die auf dem Port 8080 betrieben wird.
+
+\lstinputlisting[firstline=41, lastline=46, caption=ServletStarter.java (ll. 41-46): Servlet wird in Context gesetzt, label=servletStarter_context, style=java]{content/listings/ServletStarter.java}
+In Quelltext \ref{servletStarter_context} wird der Context initialisiert und das Servlet wird in den Context eingebunden. Das Servlet ist also nach Start des Server unter der Adresse ``localhost:8080/api/GetTemperature'' erreichbar.
+
+\lstinputlisting[firstline=48, lastline=54, caption=ServletStarter.java (ll. 48-54): Context wird den Handlern zugefügt, label=servletStarter_handler, style=java]{content/listings/ServletStarter.java}
+In Quelltext \ref{servletStarter_handler} wird der Context dann den Handlern zugefügt, die Handler dem Server zugeordnet und der Server dann gestartet.
 \section{Löschung der AWS Ressourcen}
 
 Eine weitere Klasse ist die Klasse ``DeleteResources'', mittels der man die gestarteten Ressourcen auf Amazon Webservices wieder löschen kann, um keine weiteren Kosten zu verursachen. \newline
 Die Klasse hat eine main Methode, die zwei Argumente annimmt: Den Streamnamen sowie den Datenbank Namen der Dynamo DB Tabelle.
-\lstinputlisting[firstline=24, lastline=30, caption=DeleteResources.java (24-30): Auslesen der übergebenen Argumente, label=deleteresources_init_variables, style=java]{content/listings/DeleteResources.java}
+\lstinputlisting[firstline=24, lastline=30, caption=DeleteResources.java (ll. 24-30): Auslesen der übergebenen Argumente in DeleteResources, label=deleteresources_init_variables, style=java]{content/listings/DeleteResources.java}
 In Quelltext \ref{deleteresources_init_variables} sieht man, wie die Argumente ausgelesen und gesetzt werden. Wenn nicht genau 2 Argumente übergeben werden, wird ein Standardwert für die beiden Variablen genutzt. 
-\lstinputlisting[firstline=32, lastline=43, caption=DeleteResources.java (32-43): Initialisierung der Dynamo DB Utilklasse und Löschen der Tabellen, label=deleteresources_init_db, style=java]{content/listings/DeleteResources.java}
+\lstinputlisting[firstline=32, lastline=43, caption=DeleteResources.java (ll. 32-43): Initialisierung der Dynamo DB Utilklasse und Löschen der Tabellen, label=deleteresources_init_db, style=java]{content/listings/DeleteResources.java}
 In Quelltext \ref{deleteresources_init_db} wird die DynamoDB Utilklasse initalisiert und dazu werden zunächst die benötigten Amazon Client Klassen erzeugt, die der Utilklasse bei der Initialisierung übergeben werden. Daraufhin wird die Übersichtstabelle sowie die Tabelle, die die Temperaturdaten enthält, gelöscht.
-\lstinputlisting[firstline=45, lastline=49, caption=DeleteResources.java: Initialisierung der Stream Utilklasse und Löschen des Streams (45-49), label=deleteresources_init_stream, style=java]{content/listings/DeleteResources.java}
+\lstinputlisting[firstline=45, lastline=49, caption=DeleteResources.java: Initialisierung der Stream Utilklasse und Löschen des Streams (ll. 45-49), label=deleteresources_init_stream, style=java]{content/listings/DeleteResources.java}
 Im nächsten Abschnitt in Quelltext \ref{deleteresources_init_stream} wird dann die Stream Utilklasse initialisiert und daraufhin der Stream gelöscht. \newline
 Damit sind alle Ressourcen, die auf Amazon Web Services genutzt wurden, gelöscht und es werden keine Kosten mehr zum Beispiel durch die temporäre Speicherung der Daten im Kinesis Stream verursacht.
 \section{Docker}
@@ -47,3 +59,5 @@ Mithilfe dieses Dockerfiles kann nun mit ``docker build -t project-image .'' ein
 Auch hier müssen wieder der AWS Access Key sowie der AWS Secret Key übergeben werden sowie die weiteren Parameter, die der Producer annimmt. In diesem Beispiel wird ein Stream namens ``StreamTest'' erzeugt, der Sensor Name ist ``SensorTest'' und der Producer erzeugt für 10 Sekunden 10 Records pro Sekunde. \newline
 Es ist natürlich auch möglich die anderen Klassen mithilfe dieses Images zu starten, indem die Übergabeparameter geändert werden.
 \section{Abweichungen im Vergleich zur Projektplanung}
+
+\section{Zusammenfassung}
