@@ -19,18 +19,20 @@
 \contentsline {lstlisting}{\numberline {3.16}ServletStarter.java (ll. 41-46): Servlet wird in Context gesetzt}{19}{lstlisting.3.16}
 \contentsline {lstlisting}{\numberline {3.17}ServletStarter.java (ll. 48-54): Context wird den Handlern zugef\"ugt}{20}{lstlisting.3.17}
 \contentsline {lstlisting}{\numberline {3.18}TemperatureServlet.java (ll. 64-67): Aufruf der Methode zum Lesen aller Temperaturen von DynamoDB}{20}{lstlisting.3.18}
-\contentsline {lstlisting}{\numberline {3.19}TemperatureServlet.java (ll. 75-89): Iteration \"uber die HashMaps}{21}{lstlisting.3.19}
-\contentsline {lstlisting}{\numberline {3.20}DeleteResources.java (ll. 24-30): Auslesen der \"ubergebenen Argumente in DeleteResources}{22}{lstlisting.3.20}
-\contentsline {lstlisting}{\numberline {3.21}DeleteResources.java (ll. 32-43): Initialisierung der Dynamo DB Utilklasse und L\"oschen der Tabellen}{22}{lstlisting.3.21}
-\contentsline {lstlisting}{\numberline {3.22}DeleteResources.java: Initialisierung der Stream Utilklasse und L\"oschen des Streams (ll. 45-49)}{23}{lstlisting.3.22}
-\contentsline {lstlisting}{\numberline {3.23}Dockerfile des Projekts}{23}{lstlisting.3.23}
-\contentsline {lstlisting}{\numberline {3.24}Konsolenbefehl zum Starten des Docker Images}{24}{lstlisting.3.24}
+\contentsline {lstlisting}{\numberline {3.19}DynamoDBUtils.java (ll. 228-242): Die Methode getAllSensorTemperatures}{20}{lstlisting.3.19}
+\contentsline {lstlisting}{\numberline {3.20}DynamoDBUtils.java (ll. 198-217): Die Methode getTemperaturesForSensor}{21}{lstlisting.3.20}
+\contentsline {lstlisting}{\numberline {3.21}TemperatureServlet.java (ll. 75-89): Iteration \"uber die HashMaps}{22}{lstlisting.3.21}
+\contentsline {lstlisting}{\numberline {3.22}DeleteResources.java (ll. 24-30): Auslesen der \"ubergebenen Argumente in DeleteResources}{23}{lstlisting.3.22}
+\contentsline {lstlisting}{\numberline {3.23}DeleteResources.java (ll. 32-43): Initialisierung der Dynamo DB Utilklasse und L\"oschen der Tabellen}{23}{lstlisting.3.23}
+\contentsline {lstlisting}{\numberline {3.24}DeleteResources.java: Initialisierung der Stream Utilklasse und L\"oschen des Streams (ll. 45-49)}{24}{lstlisting.3.24}
+\contentsline {lstlisting}{\numberline {3.25}Dockerfile des Projekts}{24}{lstlisting.3.25}
+\contentsline {lstlisting}{\numberline {3.26}Konsolenbefehl zum Starten des Docker Images}{25}{lstlisting.3.26}
 \addvspace {10\p@ }
-\contentsline {lstlisting}{\numberline {4.1}Einf\"ugen eines Ger\"ats in die Registry. Quelle: \cite {iot_registry}}{30}{lstlisting.4.1}
-\contentsline {lstlisting}{\numberline {4.2}Ger\"ateeintrag in der Registry. Quelle: \cite {iot_registry}}{30}{lstlisting.4.2}
-\contentsline {lstlisting}{\numberline {4.3}Erstellen einer AWS IoT Regel. Quelle: \cite {iot_rules}}{30}{lstlisting.4.3}
-\contentsline {lstlisting}{\numberline {4.4}Inhalt einer Payload Datei. Quelle: \cite {iot_rules}}{31}{lstlisting.4.4}
-\contentsline {lstlisting}{\numberline {4.5}GET Anfrage an einen ``Ger\"ateschatten''. Quelle: \cite {iot_get_thingshadow}}{31}{lstlisting.4.5}
-\contentsline {lstlisting}{\numberline {4.6}GET Antwort auf die Anfrage an einen ``Ger\"ateschatten''. Quelle: \cite {iot_get_thingshadow}}{31}{lstlisting.4.6}
+\contentsline {lstlisting}{\numberline {4.1}Einf\"ugen eines Ger\"ats in die Registry. Quelle: \cite {iot_registry}}{31}{lstlisting.4.1}
+\contentsline {lstlisting}{\numberline {4.2}Ger\"ateeintrag in der Registry. Quelle: \cite {iot_registry}}{31}{lstlisting.4.2}
+\contentsline {lstlisting}{\numberline {4.3}Erstellen einer AWS IoT Regel. Quelle: \cite {iot_rules}}{31}{lstlisting.4.3}
+\contentsline {lstlisting}{\numberline {4.4}Inhalt einer Payload Datei. Quelle: \cite {iot_rules}}{32}{lstlisting.4.4}
+\contentsline {lstlisting}{\numberline {4.5}GET Anfrage an einen ``Ger\"ateschatten''. Quelle: \cite {iot_get_thingshadow}}{32}{lstlisting.4.5}
+\contentsline {lstlisting}{\numberline {4.6}GET Antwort auf die Anfrage an einen ``Ger\"ateschatten''. Quelle: \cite {iot_get_thingshadow}}{32}{lstlisting.4.6}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
