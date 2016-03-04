@@ -21,13 +21,13 @@
 \contentsline {lstlisting}{\numberline {3.18}ServletStarter.java (ll. 48-54): Context wird den Handlern zugef\"ugt}{21}{lstlisting.3.18}
 \contentsline {lstlisting}{\numberline {3.19}TemperatureServlet.java (ll. 64-67): Aufruf der Methode zum Lesen aller Temperaturen von DynamoDB}{22}{lstlisting.3.19}
 \contentsline {lstlisting}{\numberline {3.20}DynamoDBUtils.java (ll. 228-242): Die Methode getAllSensorTemperatures}{22}{lstlisting.3.20}
-\contentsline {lstlisting}{\numberline {3.21}DynamoDBUtils.java (ll. 198-217): Die Methode getTemperaturesForSensor}{22}{lstlisting.3.21}
+\contentsline {lstlisting}{\numberline {3.21}DynamoDBUtils.java (ll. 198-217): Die Methode getTemperaturesForSensor}{23}{lstlisting.3.21}
 \contentsline {lstlisting}{\numberline {3.22}TemperatureServlet.java (ll. 75-89): Iteration \"uber die HashMaps}{24}{lstlisting.3.22}
 \contentsline {lstlisting}{\numberline {3.23}DeleteResources.java (ll. 24-30): Auslesen der \"ubergebenen Argumente in DeleteResources}{25}{lstlisting.3.23}
 \contentsline {lstlisting}{\numberline {3.24}DeleteResources.java (ll. 32-43): Initialisierung der Dynamo DB Utilklasse und L\"oschen der Tabellen}{25}{lstlisting.3.24}
-\contentsline {lstlisting}{\numberline {3.25}DeleteResources.java: Initialisierung der Stream Utilklasse und L\"oschen des Streams (ll. 45-49)}{25}{lstlisting.3.25}
+\contentsline {lstlisting}{\numberline {3.25}DeleteResources.java: Initialisierung der Stream Utilklasse und L\"oschen des Streams (ll. 45-49)}{26}{lstlisting.3.25}
 \contentsline {lstlisting}{\numberline {3.26}Dockerfile des Projekts}{26}{lstlisting.3.26}
-\contentsline {lstlisting}{\numberline {3.27}Konsolenbefehl zum Starten des Docker Images}{26}{lstlisting.3.27}
+\contentsline {lstlisting}{\numberline {3.27}Konsolenbefehl zum Starten des Docker Images}{27}{lstlisting.3.27}
 \addvspace {10\p@ }
 \contentsline {lstlisting}{\numberline {4.1}Einf\"ugen eines Ger\"ats in die Registry. Quelle: \cite {iot_registry}}{35}{lstlisting.4.1}
 \contentsline {lstlisting}{\numberline {4.2}Ger\"ateeintrag in der Registry. Quelle: \cite {iot_registry}}{36}{lstlisting.4.2}
