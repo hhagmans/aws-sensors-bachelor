@@ -36,7 +36,7 @@ Das Projekt wurde bereits in einer vorher bearbeiteten Projektarbeit \cite{proje
 		
 		
 		\hline
-				Dashboard Darstellung & Die Daten werden im Dashboard in verschiedenen Diagrammen wie bspw. Verlaufsdiagrammen dargestellt sowie in Tabellen. & Leistungsmerkmal \\
+				Dashboard Darstellung & Die Daten werden in einem Dashboard dargestellt. Bspw. mittels Verlaufsdiagrammen und in tabellarischer Form. & Leistungsmerkmal \\
 				
 				\hline
 		
@@ -62,7 +62,7 @@ Das Projekt wurde bereits in einer vorher bearbeiteten Projektarbeit \cite{proje
 		
 		\hline
 		
-		Aktualität der Daten & Die Daten sollen im Dashboard aktuell gehalten werden, auch wenn die Seite nicht neu geladen wird & Begeisterungs-merkmal \\
+		Aktualität der Daten & Die Daten sollen im Dashboard aktuell gehalten werden, auch wenn die Seite nicht durch den Benutzer neu geladen wird & Begeisterungs-merkmal \\
 		
 		\hline
 		
@@ -106,7 +106,7 @@ Producer & Es müssen mehrere Producer geschrieben werden, die konstant Temperatu
 
 \hline
 
-Consumer & Es muss mindestens ein Consumer geschrieben werden, der die Daten der Producer verarbeitet. Der Consumer wird in Java geschrieben & 20 \\
+Consumer & Es muss mindestens ein Consumer geschrieben werden, der die Daten der Producer verarbeitet. Der Consumer wird in Java implementiert & 20 \\
 
 \hline
 
@@ -171,7 +171,7 @@ Consumer & Es muss mindestens ein Consumer geschrieben werden, der die Daten der
 \end{table}
 
 Das Pflichtenheft ist genau wie die Anforderungsliste nach der Priorisierung sortiert, die im Rahmen einer Kano Bewertung der einzelnen Punkte erstellt wurde. Genauere Erläuterungen der einzelnen Anforderungen und Punkte des Pflichtenhefts finden sich in der Projektarbeit. \newline
-Des weiteren wurde im Rahmen der Projektplanung eine Risikoanalyse durchgeführt, um die größten Risiken des Projekts zu erkennen und dementsprechende Gegenmaßnahmen anwenden zu können. Hierbei haben sich folgende 4 Risiken herausgestellt:
+Des Weiteren wurde im Rahmen der Projektplanung eine Risikoanalyse durchgeführt, um die größten Risiken des Projekts zu erkennen und dementsprechende Gegenmaßnahmen anwenden zu können. Hierbei haben sich folgende 4 Risiken herausgestellt:
 
 \begin{table}[h!]
 	
@@ -189,7 +189,7 @@ Des weiteren wurde im Rahmen der Projektplanung eine Risikoanalyse durchgeführt,
 		
 		\hline
 		
-		2 & Producer erzeugt zu viele Daten und damit zu viele Kosten bei AWS & 150 & 20 & 75 \\
+		2 & Producer erzeugt zu viele Daten und damit zu viele Kosten bei AWS & 50 & 150 & 75 \\
 		
 		\hline
 		
@@ -207,7 +207,7 @@ Des weiteren wurde im Rahmen der Projektplanung eine Risikoanalyse durchgeführt,
 	
 \end{table}
 
-Der Risikofaktor entspricht der Formel \(\frac{Eintrittswahrscheinlichkeit \cdot Schaden}{100}\).Dementsprechend befinden sich gerade die Risiken Nummer 3 und 4 durchaus in einem gefährlichen Bereich, der das Projekt gefährden könnte. In der Projektarbeit wurden allerdings Maßnahmen zur Verhinderung des Eintretens der Risiken sowie der Verminderung der Kosten bei Eintreten der Risiken ermittelt, die in der Ausführung des Projektes auch umgesetzt wurden.  \newline
-Zu guter Letzt wurde eine Kostenplanung erstellt, da die Nutzung von Amazon Web Services Kosten verursachen kann und diese nicht zu hoch ausfallen sollten. Es wurde ein Budget von bis zu 200  \texteuro{} gewährt, das nicht überschritten werden sollte. Daher mussten die aktuellen Kosten ständig überwacht werden. \newline
+Der Risikofaktor entspricht der Formel \(\frac{Eintrittswahrscheinlichkeit \cdot Schaden}{100}\).Dementsprechend befinden sich gerade die Risiken Nummer 3 und 4 durchaus in einem gefährlichen Bereich, der das Projekt gefährden könnte. In der Projektarbeit wurden allerdings Maßnahmen zur Verhinderung des Eintretens der Risiken sowie der Verminderung der Kosten bei Eintreten der Risiken ermittelt, die in der Ausführung des Projektes auch umgesetzt wurden (s. Kapitel \ref{abweichungen}).  \newline
+Abschließend wurde eine Kostenplanung erstellt, weil die Nutzung von Amazon Web Services Kosten verursachen kann und diese nicht zu hoch ausfallen sollten. Es wurde ein Budget von bis zu 200  \texteuro{} gewährt, das nicht überschritten werden sollte. Daher mussten die aktuellen Kosten ständig überwacht werden. \newline
 Im Rahmen der Projektarbeit wurden zudem die Themen und Komponenten, die Teil der Bachelorarbeit sein sollten, behandelt und beschrieben. Darunter zählten die Themen Cloud Computing, Amazon Web Services und deren einzelne Komponenten sowie Docker. Daher müssen diese Themen in dieser Bachelorarbeit nicht mehr ausführlich behandelt werden. \newline
 Eine erste Evaluation der in Frage kommenden Amazon Web Services wurde ebenfalls durchgeführt und dabei eine Kombination aus Amazon EC2 als Infrastruktur für die Producer und Consumer, Amazon Kinesis als Übertragungskanal für die Temperaturdaten sowie Amazon RDS oder Amazon DynamoDB für die Persistierung der Daten als passende Services ausgemacht.
